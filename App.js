@@ -1,24 +1,28 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
-import { Surface, Text } from "react-native-paper";
-import { Provider } from "react-redux";
+import { Provider as StoreProvider } from "react-redux";
+import { Provider as PaperProvider } from "react-native-paper";
+import {
+    Poppins_400Regular,
+    Poppins_500Medium,
+} from "@expo-google-fonts/poppins";
+import { useFonts } from "expo-font";
+
 import store from "./redux/store";
+import theme from "./globals/theme";
+import Navigator from "./navigation/Navigator";
 
 export default function App() {
+    const [fontLoaded, fontError] = useFonts({
+        Poppins_400Regular,
+        Poppins_500Medium,
+    });
+
     return (
-        <Provider store={store}>
-            <Surface style={styles.container}>
-                <StatusBar style="auto" />
-            </Surface>
-        </Provider>
+        fontLoaded && (
+            <StoreProvider store={store}>
+                <PaperProvider theme={theme}>
+                    <Navigator />
+                </PaperProvider>
+            </StoreProvider>
+        )
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-});

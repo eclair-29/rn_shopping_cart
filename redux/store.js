@@ -1,15 +1,18 @@
-/* 
-redux toolkit references
-- modular approaches: hhttps://www.conf42.com/assets/slides/Conf42%20JS%202021%20Slides%20-%20Sergii%20Zhuravel.pdf
-*/
-
+import createSagaMiddleware from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
+
 import productsReducer from "./slices/products";
+import productsSaga from "./sagas/products";
+
+const saga = createSagaMiddleware();
 
 const store = configureStore({
     reducer: {
         products: productsReducer,
     },
+    middleware: [saga],
 });
+
+saga.run(productsSaga);
 
 export default store;
