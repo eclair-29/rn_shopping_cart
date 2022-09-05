@@ -1,8 +1,10 @@
+import Feather from "react-native-vector-icons/Feather";
+
 import { Provider as StoreProvider } from "react-redux";
 import { Provider as PaperProvider } from "react-native-paper";
 import {
-    Poppins_400Regular,
-    Poppins_500Medium,
+    Poppins_400Regular as poppins_400,
+    Poppins_500Medium as poppins_500,
 } from "@expo-google-fonts/poppins";
 import { useFonts } from "expo-font";
 
@@ -12,14 +14,16 @@ import Navigator from "./navigation/Navigator";
 
 export default function App() {
     const [fontLoaded, fontError] = useFonts({
-        Poppins_400Regular,
-        Poppins_500Medium,
+        poppins_400,
+        poppins_500,
     });
+
+    const icon = (props) => <Feather {...props} />;
 
     return (
         fontLoaded && (
             <StoreProvider store={store}>
-                <PaperProvider theme={theme}>
+                <PaperProvider settings={{ icon }} theme={theme}>
                     <Navigator />
                 </PaperProvider>
             </StoreProvider>

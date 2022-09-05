@@ -3,19 +3,25 @@ import { StyleSheet } from "react-native";
 const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
     },
     text: {
-        fontFamily: "Poppins_400Regular",
+        fontFamily: "poppins_400",
     },
     button: {
-        fontFamily: "Poppins_500Medium",
+        fontFamily: "poppins_500",
     },
     header: {
         fontSize: 16,
-        fontFamily: "Poppins_500Medium",
+        fontFamily: "poppins_500",
+        textTransform: "uppercase",
+    },
+    fab: {
+        position: "absolute",
+        margin: 16,
+        right: 0,
+        bottom: 0,
     },
 });
 

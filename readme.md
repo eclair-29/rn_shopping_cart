@@ -1,13 +1,14 @@
 ### Sep 3'22
 
--   [-] setup react native navigation
--   [ ] setup products state
--   [ ] include additonal info for each product e.g. image, rating, remaining inventory
--   [ ] create products selector using redux saga
--   [ ] render products on Results.js
+-   [x] setup react native navigation
+-   [x] setup products state
+-   [x] include additonal info for each product e.g. image, rating, remaining inventory
+-   [x] create products selector using redux saga
+-   [x] render products on Results.js
 -   [ ] conditional feedback using skeleton when products is not loaded
 
 ### Sep 4'22
 
--   [ ] setup cart state
--   [ ] create selectors for cart
+-   [x] create navigation control per screen
+-   [x] check on react navigation search feature - no search feature built in
+-   [x] refactor redux and saga conventions
