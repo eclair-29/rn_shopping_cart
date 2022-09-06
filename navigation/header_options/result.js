@@ -3,7 +3,7 @@ import { IconButton, Colors } from "react-native-paper";
 const ResultHeaderRight = ({ navigation }) => {
     return (
         <>
-            <IconButton icon="filter" />
+            <IconButton icon="filter" color={Colors.white} />
         </>
     );
 };

@@ -31,7 +31,7 @@ const gridListStyle = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
     },
     headerContainer: {
         flexDirection: "row",

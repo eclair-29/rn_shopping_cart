@@ -1,4 +1,4 @@
-import { IconButton } from "react-native-paper";
+import { Colors, IconButton } from "react-native-paper";
 
 const CartHeaderRight = ({ navigation }) => {
     const _handleSearchNavigation = () => {
@@ -7,7 +7,11 @@ const CartHeaderRight = ({ navigation }) => {
 
     return (
         <>
-            <IconButton icon="search" onPress={_handleSearchNavigation} />
+            <IconButton
+                icon="search"
+                onPress={_handleSearchNavigation}
+                color={Colors.white}
+            />
             <IconButton icon="message-circle" disabled />
         </>
     );

@@ -1,7 +1,7 @@
 import Feather from "react-native-vector-icons/Feather";
-
+import { StatusBar } from "react-native";
 import { Provider as StoreProvider } from "react-redux";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Colors, Provider as PaperProvider } from "react-native-paper";
 import {
     Poppins_400Regular as poppins_400,
     Poppins_500Medium as poppins_500,
@@ -24,6 +24,10 @@ export default function App() {
         fontLoaded && (
             <StoreProvider store={store}>
                 <PaperProvider settings={{ icon }} theme={theme}>
+                    <StatusBar
+                        backgroundColor={Colors.teal700}
+                        barStyle="light-content"
+                    />
                     <Navigator />
                 </PaperProvider>
             </StoreProvider>

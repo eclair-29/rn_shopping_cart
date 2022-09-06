@@ -31,7 +31,7 @@ const ProductCard = ({ product, titleFontSize, priceFontSize }) => {
                 </Text>
             </Card.Content>
             <Card.Actions>
-                <Button labelStyle={productCardStyles.cartButton}>
+                <Button labelStyle={productCardStyles.action}>
                     Add to Cart
                 </Button>
             </Card.Actions>
@@ -41,7 +41,6 @@ const ProductCard = ({ product, titleFontSize, priceFontSize }) => {
 
 const productCardStyles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.white,
         elevation: 0,
         borderWidth: 1,
         margin: 5,
@@ -58,7 +57,7 @@ const productCardStyles = StyleSheet.create({
         fontFamily: "poppins_500",
         color: Colors.deepOrange700,
     },
-    cartButton: {
+    action: {
         fontFamily: "poppins_500",
         fontSize: 12,
     },

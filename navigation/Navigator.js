@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { Colors } from "react-native-paper";
 import globalStyles from "../globals/styles";
 import Cart from "../screens/Cart";
 import Search from "../screens/Search";
@@ -13,6 +13,10 @@ const Stack = createNativeStackNavigator();
 
 const sharedNavigationOptions = {
     headerTitleStyle: globalStyles.header,
+    headerStyle: {
+        backgroundColor: Colors.teal700,
+    },
+    headerTintColor: Colors.white,
 };
 
 const AppStack = () => {

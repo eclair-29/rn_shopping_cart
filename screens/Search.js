@@ -1,5 +1,6 @@
 import { Surface, Text, Button } from "react-native-paper";
 import CartFab from "../components/CartFab";
+import SearchField from "../components/SearchField";
 import globalStyles from "../globals/styles";
 
 const Search = ({ navigation }) => {
@@ -8,17 +9,10 @@ const Search = ({ navigation }) => {
     };
 
     return (
-        <Surface style={globalStyles.container}>
-            <Text style={globalStyles.text}>Search Screen</Text>
-            <Button
-                mode="outlined"
-                labelStyle={globalStyles.button}
-                onPress={_handleNavigation}
-            >
-                Cart
-            </Button>
-            <CartFab navigation={navigation} />
-        </Surface>
+        <>
+            <SearchField />
+            <Surface style={globalStyles.container}></Surface>
+        </>
     );
 };
 
