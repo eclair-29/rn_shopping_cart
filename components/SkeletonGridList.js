@@ -25,17 +25,12 @@ const SkeletonGridList = ({ skeletonFiller, col, header }) => (
         )}
         keyExtractor={(product, index) => index.toString()}
         numColumns={col}
-        style={gridListStyle.container}
+        style={globalStyles.gridContainer}
         ListHeaderComponent={<GridListHeader header={header} />}
     />
 );
 
 const gridListStyle = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-        // backgroundColor: Colors.white,
-    },
     headerContainer: {
         flexDirection: "row",
         justifyContent: "space-between",

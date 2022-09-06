@@ -1,4 +1,4 @@
-import { Colors, Headline, Surface } from "react-native-paper";
+import { Headline, Surface } from "react-native-paper";
 import { FlatList, StyleSheet } from "react-native";
 import globalStyles from "../globals/styles";
 import ProductCard from "./ProductCard";
@@ -22,17 +22,12 @@ const ProductGridList = ({ products, col, header }) => (
         )}
         keyExtractor={(product, index) => index.toString()}
         numColumns={col}
-        style={gridListStyle.container}
+        style={globalStyles.gridContainer}
         ListHeaderComponent={<GridListHeader header={header} />}
     />
 );
 
 const gridListStyle = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-        // backgroundColor: Colors.white,
-    },
     headerContainer: {
         flexDirection: "row",
         justifyContent: "space-between",

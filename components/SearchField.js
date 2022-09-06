@@ -1,12 +1,25 @@
-import { StyleSheet, Image } from "react-native";
-import { Colors, IconButton, Surface, TextInput } from "react-native-paper";
+import { useSelector, useDispatch } from "react-redux";
+import { StyleSheet } from "react-native";
+import { Colors, Surface, TextInput } from "react-native-paper";
+import { changeQueryValue } from "../redux/slices/search";
 
 const TextInputLeftNode = <TextInput.Icon icon="search" size={20} />;
 
 const TextInputRightNode = <TextInput.Icon icon="mic" size={20} />;
 
-const SearchField = () => {
-    const _handleSearch = (queryInput) => {};
+const SearchField = ({ navigation }) => {
+    const query = useSelector((state) => state.search.query);
+    const dispatch = useDispatch();
+
+    const _handleSearch = (value) => {
+        navigation.navigate("Result");
+    };
+
+    const _handleQueryChange = (value) => {
+        dispatch(changeQueryValue(value));
+    };
+
+    console.log(query);
 
     return (
         <Surface style={searchFieldStyles.container}>
@@ -14,10 +27,10 @@ const SearchField = () => {
                 placeholder="Search"
                 clearButtonMode="always"
                 mode="outlined"
-                style={searchFieldStyles.searchInput}
                 dense
+                value={query}
+                onChangeText={(text) => _handleQueryChange(text)}
                 onSubmitEditing={(text) => _handleSearch(text)}
-                // value="Search"
                 left={TextInputLeftNode}
                 right={TextInputRightNode}
             />
@@ -27,7 +40,6 @@ const SearchField = () => {
 
 const searchFieldStyles = StyleSheet.create({
     container: {
-        // flex: 1,
         height: 80,
         justifyContent: "center",
         paddingHorizontal: 15,
@@ -35,10 +47,6 @@ const searchFieldStyles = StyleSheet.create({
         paddingBottom: 15,
         borderBottomWidth: 1,
         borderColor: Colors.grey400,
-    },
-    searchInput: {
-        // height: 45,
-        // paddingVertical: 5,
     },
 });
 

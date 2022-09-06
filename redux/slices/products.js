@@ -1,23 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const updateProducts = (state, action) => {
-    state.list = action.payload;
+    state.catalog = action.payload;
     state.loading = false;
 };
 
 export const productsSlice = createSlice({
     name: "products",
     initialState: {
-        list: [],
+        catalog: [],
         loading: false,
         error: "",
+        page: 1,
     },
     reducers: {
         loadProducts: (state) => {
             state.loading = true;
         },
         getProductsSuccess: updateProducts,
-        getProductsByQuerySuccess: updateProducts,
         getProductsFailure: (state) => {
             state.loading = false;
         },
@@ -26,6 +26,7 @@ export const productsSlice = createSlice({
 
 export const {
     loadProducts,
+    loadSearchedProducts,
     getProductsSuccess,
     getProductsByQuerySuccess,
     getProductsFailure,

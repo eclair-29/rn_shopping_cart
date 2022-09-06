@@ -7,8 +7,9 @@ import SkeletonGridList from "../components/SkeletonGridList";
 import SearchField from "../components/SearchField";
 
 const Result = ({ navigation }) => {
-    const products = useSelector((state) => state.products.list);
+    const products = useSelector((state) => state.products.catalog);
     const loading = useSelector((state) => state.products.loading);
+
     const dispatch = useDispatch();
 
     const skeletonFiller = new Array(8);
@@ -17,12 +18,9 @@ const Result = ({ navigation }) => {
         dispatch(loadProducts());
     }, [dispatch]);
 
-    console.log(products);
-    console.log(loading);
-
     return (
         <>
-            <SearchField />
+            <SearchField navigation={navigation} />
             {loading ? (
                 <SkeletonGridList
                     skeletonFiller={[...skeletonFiller.keys()]}

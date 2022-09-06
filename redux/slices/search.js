@@ -1,4 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
 
 export const searchSlice = createSlice({
     name: "search",
@@ -7,7 +9,7 @@ export const searchSlice = createSlice({
         query: "",
     },
     reducers: {
-        searchProduct: (state, action) => {
+        changeQueryValue: (state, action) => {
             state.query = action.payload;
         },
         upsertQueryToHistory: (state, action) => {
@@ -16,6 +18,12 @@ export const searchSlice = createSlice({
     },
 });
 
-export const { searchProduct, upsertQueryToHistory } = searchSlice.actions;
+const persistConfig = {
+    key: "root",
+    storage: AsyncStorage,
+    whitelist: ["history"],
+};
 
-export default searchSlice.reducer;
+export const { upsertQueryToHistory, changeQueryValue } = searchSlice.actions;
+
+export default persistReducer(persistConfig, searchSlice.reducer);

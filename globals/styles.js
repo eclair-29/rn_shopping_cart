@@ -23,6 +23,10 @@ const globalStyles = StyleSheet.create({
         right: 0,
         bottom: 0,
     },
+    gridContainer: {
+        flex: 1,
+        padding: 10,
+    },
 });
 
 export default globalStyles;
