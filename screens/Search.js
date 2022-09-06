@@ -1,11 +1,18 @@
-import { Surface, Text } from "react-native-paper";
+import { Surface, Text, Button } from "react-native-paper";
+import CartFab from "../components/CartFab";
+import SearchField from "../components/SearchField";
 import globalStyles from "../globals/styles";
 
-const Search = () => {
+const Search = ({ navigation }) => {
+    const _handleNavigation = () => {
+        navigation.navigate("Cart");
+    };
+
     return (
-        <Surface style={globalStyles.container}>
-            <Text style={globalStyles.text}>Search Screen</Text>
-        </Surface>
+        <>
+            <SearchField />
+            <Surface style={globalStyles.container}></Surface>
+        </>
     );
 };
 

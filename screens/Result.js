@@ -1,34 +1,38 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Surface, Text } from "react-native-paper";
-
-import globalStyles from "../globals/styles";
 import { loadProducts } from "../redux/slices/products";
+import CartFab from "../components/CartFab";
+import ProductGridList from "../components/ProductGridList";
+import SkeletonGridList from "../components/SkeletonGridList";
+import SearchField from "../components/SearchField";
 
 const Result = ({ navigation }) => {
-    const _handleBackNavigation = () => {
-        navigation.goBack();
-    };
-
-    const products = useSelector((state) => state.products.products);
+    const products = useSelector((state) => state.products.list);
+    const loading = useSelector((state) => state.products.loading);
     const dispatch = useDispatch();
+
+    const skeletonFiller = new Array(8);
 
     useEffect(() => {
         dispatch(loadProducts());
-        console.log(products);
     }, [dispatch]);
 
+    console.log(products);
+    console.log(loading);
+
     return (
-        <Surface style={globalStyles.container}>
-            <Text style={globalStyles.text}>Result Screen</Text>
-            <Button
-                mode="outlined"
-                labelStyle={globalStyles.button}
-                onPress={_handleBackNavigation}
-            >
-                Home
-            </Button>
-        </Surface>
+        <>
+            <SearchField />
+            {loading ? (
+                <SkeletonGridList
+                    skeletonFiller={[...skeletonFiller.keys()]}
+                    col={2}
+                />
+            ) : (
+                <ProductGridList products={products} col={2} />
+            )}
+            <CartFab navigation={navigation} />
+        </>
     );
 };
 

@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const updateProducts = (state, action) => {
+    state.list = action.payload;
+    state.loading = false;
+};
+
 export const productsSlice = createSlice({
     name: "products",
     initialState: {
-        products: [],
+        list: [],
         loading: false,
         error: "",
     },
@@ -11,16 +16,18 @@ export const productsSlice = createSlice({
         loadProducts: (state) => {
             state.loading = true;
         },
-        getProductsSuccess: (state, action) => {
-            state.products = action.payload;
-            state.loading = false;
-        },
+        getProductsSuccess: updateProducts,
+        getProductsByQuerySuccess: updateProducts,
         getProductsFailure: (state) => {
             state.loading = false;
         },
     },
 });
 
-export const { loadProducts, getProductsFailure, getProductsSuccess } =
-    productsSlice.actions;
+export const {
+    loadProducts,
+    getProductsSuccess,
+    getProductsByQuerySuccess,
+    getProductsFailure,
+} = productsSlice.actions;
 export default productsSlice.reducer;
