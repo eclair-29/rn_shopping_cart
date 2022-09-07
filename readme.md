@@ -17,7 +17,7 @@
 
 -   [x] create search field UI
 -   [x] create search state and reducer
--   [ ] handle server search request
+-   [x] handle server search request
 -   [ ] handle request-on-scroll feature - based on page state
 -   [ ] add pull to reload list feature - optional
 
@@ -27,7 +27,8 @@
 -   [ ] create cart states and reducer
 -   [ ] create cart ui flatlist
 -   [ ] create cart card skeleton ui
--   [ ] handle search if current screen is "Result"
--   [ ] find package for product photo placeholders
+-   [x] handle search if current screen is "Result"
+-   [x] find package for product photo placeholders
+-   [ ] enable searchbar onfocus whenever we visit "Search" screen
 
 ### Must Have features

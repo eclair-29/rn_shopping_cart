@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigationState } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import { Colors, Surface, TextInput } from "react-native-paper";
 import { changeQueryValue } from "../redux/slices/search";
+import { loadProducts } from "../redux/slices/products";
 
 const TextInputLeftNode = <TextInput.Icon icon="search" size={20} />;
 
@@ -11,15 +13,19 @@ const SearchField = ({ navigation }) => {
     const query = useSelector((state) => state.search.query);
     const dispatch = useDispatch();
 
+    const currentScreen = useNavigationState(
+        (state) => state.routes[state.index].name
+    );
+
     const _handleSearch = (value) => {
-        navigation.navigate("Result");
+        currentScreen !== "Result"
+            ? navigation.navigate("Result")
+            : dispatch(loadProducts());
     };
 
     const _handleQueryChange = (value) => {
         dispatch(changeQueryValue(value));
     };
-
-    console.log(query);
 
     return (
         <Surface style={searchFieldStyles.container}>
@@ -27,6 +33,7 @@ const SearchField = ({ navigation }) => {
                 placeholder="Search"
                 clearButtonMode="always"
                 mode="outlined"
+                autoCapitalize="none"
                 dense
                 value={query}
                 onChangeText={(text) => _handleQueryChange(text)}

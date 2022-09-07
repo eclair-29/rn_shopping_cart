@@ -44,12 +44,13 @@ const productCardStyles = StyleSheet.create({
         elevation: 0,
         borderWidth: 1,
         margin: 5,
-        flex: 1,
+        flex: 1 / 2,
     },
     cover: {
         height: Dimensions.get("window").width / 2,
     },
     title: {
+        paddingTop: 5,
         fontFamily: "poppins_500",
         lineHeight: 20,
     },

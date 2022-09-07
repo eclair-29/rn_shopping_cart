@@ -1,23 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const updateProducts = (state, action) => {
-    state.catalog = action.payload;
-    state.loading = false;
-};
-
 export const productsSlice = createSlice({
     name: "products",
     initialState: {
-        catalog: [],
-        loading: false,
+        list: [],
+        loading: true,
         error: "",
+        endPage: false,
         page: 1,
     },
     reducers: {
         loadProducts: (state) => {
             state.loading = true;
         },
-        getProductsSuccess: updateProducts,
+        loadEndPage: (state) => {
+            state.endPage = true;
+        },
+        getNextPage: (state) => {
+            state.page = state.page + 1;
+        },
+        getProductsSuccess: (state, action) => {
+            state.list = [...state.list, ...action.payload];
+            state.loading = false;
+        },
         getProductsFailure: (state) => {
             state.loading = false;
         },
@@ -26,9 +31,9 @@ export const productsSlice = createSlice({
 
 export const {
     loadProducts,
-    loadSearchedProducts,
     getProductsSuccess,
-    getProductsByQuerySuccess,
     getProductsFailure,
+    getNextPage,
+    loadEndPage,
 } = productsSlice.actions;
 export default productsSlice.reducer;
