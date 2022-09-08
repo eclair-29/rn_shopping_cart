@@ -10,7 +10,7 @@ const Search = ({ navigation }) => {
 
     return (
         <>
-            <SearchField />
+            <SearchField navigation={navigation} />
             <Surface style={globalStyles.container}></Surface>
         </>
     );

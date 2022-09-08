@@ -1,36 +1,51 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loadProducts } from "../redux/slices/products";
+import { loadProducts, loadMoreProducts } from "../redux/slices/products";
+import {
+    getLoadingState,
+    getProductsState,
+    getPageState,
+    getIsEndPageState,
+    getValidationState,
+} from "../redux/selectors/products";
 import CartFab from "../components/CartFab";
 import ProductGridList from "../components/ProductGridList";
-import SkeletonGridList from "../components/SkeletonGridList";
 import SearchField from "../components/SearchField";
+import { loadAddToCart } from "../redux/slices/cart";
 
 const Result = ({ navigation }) => {
-    const products = useSelector((state) => state.products.list);
-    const loading = useSelector((state) => state.products.loading);
-    const dispatch = useDispatch();
+    const products = useSelector(getProductsState);
+    const loading = useSelector(getLoadingState);
+    const page = useSelector(getPageState);
+    const isEndPage = useSelector(getIsEndPageState);
+    const validation = useSelector(getValidationState);
 
-    const skeletonFiller = new Array(8);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadProducts());
     }, [dispatch]);
 
-    console.log(products);
-    console.log(loading);
+    const _handleLoadMore = () => {
+        !isEndPage && dispatch(loadMoreProducts());
+    };
+
+    const _handleAddToCart = (productId) => {
+        dispatch(loadAddToCart(productId));
+    };
 
     return (
         <>
-            <SearchField />
-            {loading ? (
-                <SkeletonGridList
-                    skeletonFiller={[...skeletonFiller.keys()]}
-                    col={2}
-                />
-            ) : (
-                <ProductGridList products={products} col={2} />
-            )}
+            <SearchField navigation={navigation} />
+            <ProductGridList
+                products={products}
+                col={2}
+                _handleLoadMore={_handleLoadMore}
+                loading={loading}
+                validation={validation}
+                page={page}
+                _handleAddToCart={_handleAddToCart}
+            />
             <CartFab navigation={navigation} />
         </>
     );

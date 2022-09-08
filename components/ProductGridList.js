@@ -1,47 +1,73 @@
-import { Colors, Headline, Surface } from "react-native-paper";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
+import { ActivityIndicator, Colors, Headline } from "react-native-paper";
 import globalStyles from "../globals/styles";
 import ProductCard from "./ProductCard";
 
-const GridListHeader = ({ header }) =>
-    header && (
-        <Surface style={gridListStyle.headerContainer}>
-            <Headline style={gridListStyle.header}>{header}</Headline>
-        </Surface>
+const GridListFooter = ({ loading, page }) =>
+    loading && (
+        <View>
+            <ActivityIndicator
+                style={gridListStyles.loader}
+                animating={true}
+                color={Colors.cyan500}
+            />
+        </View>
     );
 
-const ProductGridList = ({ products, col, header }) => (
-    <FlatList
-        data={products}
-        renderItem={(product) => (
-            <ProductCard
-                product={product.item}
-                titleFontSize={12}
-                priceFontSize={14}
-            />
-        )}
-        keyExtractor={(product, index) => index.toString()}
-        numColumns={col}
-        style={gridListStyle.container}
-        ListHeaderComponent={<GridListHeader header={header} />}
-    />
-);
+const GridListEmpty = ({ validation }) =>
+    validation && (
+        <View style={gridListStyles.empty}>
+            <Headline style={gridListStyles.headline}>{validation}</Headline>
+        </View>
+    );
 
-const gridListStyle = StyleSheet.create({
+const ProductGridList = ({
+    products,
+    col,
+    _handleLoadMore,
+    loading,
+    validation,
+    _handleAddToCart,
+}) => {
+    return (
+        <FlatList
+            data={products}
+            renderItem={(product) => (
+                <ProductCard
+                    product={product.item}
+                    titleFontSize={12}
+                    priceFontSize={14}
+                    _handleAddToCart={_handleAddToCart}
+                />
+            )}
+            keyExtractor={(product, index) => index.toString()}
+            numColumns={col}
+            style={gridListStyles.list}
+            onEndReached={_handleLoadMore}
+            contentContainerStyle={gridListStyles.container}
+            ListFooterComponent={<GridListFooter loading={loading} />}
+            ListEmptyComponent={<GridListEmpty validation={validation} />}
+        />
+    );
+};
+
+const gridListStyles = StyleSheet.create({
     container: {
-        flex: 1,
         padding: 10,
-        // backgroundColor: Colors.white,
     },
-    headerContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        paddingHorizontal: 5,
-        backgroundColor: "transparent",
+    list: {
+        flex: 1,
     },
-    header: {
+    loader: {
+        paddingVertical: 10,
+    },
+    empty: {
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    headline: {
         ...globalStyles.header,
-        fontSize: 12,
+        color: Colors.grey600,
     },
 });
 

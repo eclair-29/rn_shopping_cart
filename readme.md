@@ -1,10 +1,8 @@
-> Note: I have done all below tasks during night hours only...
-
 ### Sep 3'22
 
 -   [x] setup react native navigation
 -   [x] setup products state
--   [x] include additonal info for each product e.g. image, rating, remaining inventory
+-   [x] include additonal info for each product e.g. image, rating, onhand inventory
 -   [x] create products selector using redux saga
 -   [x] render products on Results.js
 -   [x] conditional feedback using skeleton when products is not loaded
@@ -19,8 +17,18 @@
 
 -   [x] create search field UI
 -   [x] create search state and reducer
--   [ ] handle server search request
--   [ ] handle reques-on-scroll feature
--   [ ] add pull to reload list feature
+-   [x] handle server search request
+-   [ ] handle request-on-scroll feature - based on page state
+-   [ ] add pull to reload list feature - optional
+
+### Sep 6'22
+
+-   [x] setup redux persist
+-   [ ] create cart states and reducer
+-   [ ] create cart ui flatlist
+-   [ ] create cart card skeleton ui
+-   [x] handle search if current screen is "Result"
+-   [x] find package for product photo placeholders
+-   [ ] enable searchbar onfocus whenever we visit "Search" screen
 
 ### Must Have features

@@ -1,12 +1,32 @@
-import { StyleSheet, Image } from "react-native";
-import { Colors, IconButton, Surface, TextInput } from "react-native-paper";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigationState } from "@react-navigation/native";
+import { StyleSheet } from "react-native";
+import { Colors, Surface, TextInput } from "react-native-paper";
+import { changeQueryValue } from "../redux/slices/search";
+import { loadProducts } from "../redux/slices/products";
+import { getQueryState } from "../redux/selectors/search";
 
-const TextInputLeftNode = <TextInput.Icon icon="search" size={20} />;
+const textInputLeftNode = <TextInput.Icon icon="search" size={20} />;
 
-const TextInputRightNode = <TextInput.Icon icon="mic" size={20} />;
+const textInputRightNode = <TextInput.Icon disabled icon="mic" size={20} />;
 
-const SearchField = () => {
-    const _handleSearch = (queryInput) => {};
+const SearchField = ({ navigation }) => {
+    const query = useSelector(getQueryState);
+    const dispatch = useDispatch();
+
+    const currentScreen = useNavigationState(
+        (state) => state.routes[state.index].name
+    );
+
+    const _handleSearch = (value) => {
+        currentScreen !== "Result"
+            ? navigation.navigate("Result")
+            : dispatch(loadProducts());
+    };
+
+    const _handleQueryChange = (value) => {
+        dispatch(changeQueryValue(value));
+    };
 
     return (
         <Surface style={searchFieldStyles.container}>
@@ -14,12 +34,13 @@ const SearchField = () => {
                 placeholder="Search"
                 clearButtonMode="always"
                 mode="outlined"
-                style={searchFieldStyles.searchInput}
+                autoCapitalize="none"
                 dense
+                value={query}
+                onChangeText={(text) => _handleQueryChange(text)}
                 onSubmitEditing={(text) => _handleSearch(text)}
-                // value="Search"
-                left={TextInputLeftNode}
-                right={TextInputRightNode}
+                left={textInputLeftNode}
+                right={textInputRightNode}
             />
         </Surface>
     );
@@ -27,7 +48,6 @@ const SearchField = () => {
 
 const searchFieldStyles = StyleSheet.create({
     container: {
-        // flex: 1,
         height: 80,
         justifyContent: "center",
         paddingHorizontal: 15,
@@ -35,10 +55,6 @@ const searchFieldStyles = StyleSheet.create({
         paddingBottom: 15,
         borderBottomWidth: 1,
         borderColor: Colors.grey400,
-    },
-    searchInput: {
-        // height: 45,
-        // paddingVertical: 5,
     },
 });
 
