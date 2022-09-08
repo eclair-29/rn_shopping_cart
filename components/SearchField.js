@@ -4,13 +4,14 @@ import { StyleSheet } from "react-native";
 import { Colors, Surface, TextInput } from "react-native-paper";
 import { changeQueryValue } from "../redux/slices/search";
 import { loadProducts } from "../redux/slices/products";
+import { getQueryState } from "../redux/selectors/search";
 
-const TextInputLeftNode = <TextInput.Icon icon="search" size={20} />;
+const textInputLeftNode = <TextInput.Icon icon="search" size={20} />;
 
-const TextInputRightNode = <TextInput.Icon icon="mic" size={20} />;
+const textInputRightNode = <TextInput.Icon disabled icon="mic" size={20} />;
 
 const SearchField = ({ navigation }) => {
-    const query = useSelector((state) => state.search.query);
+    const query = useSelector(getQueryState);
     const dispatch = useDispatch();
 
     const currentScreen = useNavigationState(
@@ -38,8 +39,8 @@ const SearchField = ({ navigation }) => {
                 value={query}
                 onChangeText={(text) => _handleQueryChange(text)}
                 onSubmitEditing={(text) => _handleSearch(text)}
-                left={TextInputLeftNode}
-                right={TextInputRightNode}
+                left={textInputLeftNode}
+                right={textInputRightNode}
             />
         </Surface>
     );

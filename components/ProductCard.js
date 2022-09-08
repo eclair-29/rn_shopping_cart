@@ -1,50 +1,67 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { PureComponent } from "react";
+import { StyleSheet, Dimensions, View } from "react-native";
 import { Card, Colors, Button, Text, Title } from "react-native-paper";
 
-const ProductCard = ({ product, titleFontSize, priceFontSize }) => {
-    return (
-        <Card style={productCardStyles.container}>
-            <Card.Cover
-                resizeMode="contain"
-                style={productCardStyles.cover}
-                source={{
-                    uri: "https://static-01.daraz.com.np/p/714bc2b3846e187f62055b38f8192f57.jpg",
-                }}
-            />
-            <Card.Content>
-                <Title
-                    numberOfLines={2}
-                    style={{
-                        ...productCardStyles.title,
-                        fontSize: titleFontSize,
-                    }}
-                >
-                    {product.display_name}
-                </Title>
-                <Text
-                    style={{
-                        ...productCardStyles.price,
-                        fontSize: priceFontSize,
-                    }}
-                >
-                    ₱ {product.price}
-                </Text>
-            </Card.Content>
-            <Card.Actions>
-                <Button labelStyle={productCardStyles.action}>
-                    Add to Cart
-                </Button>
-            </Card.Actions>
-        </Card>
-    );
-};
+class ProductCard extends PureComponent {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const { product, _handleAddToCart, titleFontSize, priceFontSize } =
+            this.props;
+
+        return (
+            <View style={productCardStyles.container}>
+                <Card style={productCardStyles.card}>
+                    <Card.Cover
+                        resizeMode="contain"
+                        style={productCardStyles.cover}
+                        source={{
+                            uri: product.photo,
+                        }}
+                    />
+                    <Card.Content>
+                        <Title
+                            numberOfLines={2}
+                            style={{
+                                ...productCardStyles.title,
+                                fontSize: titleFontSize,
+                            }}
+                        >
+                            {product.display_name}
+                        </Title>
+                        <Text
+                            style={{
+                                ...productCardStyles.price,
+                                fontSize: priceFontSize,
+                            }}
+                        >
+                            ₱ {product.price}
+                        </Text>
+                    </Card.Content>
+                    <Card.Actions>
+                        <Button
+                            onPress={() => _handleAddToCart(product.id)}
+                            labelStyle={productCardStyles.action}
+                        >
+                            Add to Cart
+                        </Button>
+                    </Card.Actions>
+                </Card>
+            </View>
+        );
+    }
+}
 
 const productCardStyles = StyleSheet.create({
     container: {
+        flex: 1 / 2,
+    },
+    card: {
         elevation: 0,
         borderWidth: 1,
         margin: 5,
-        flex: 1 / 2,
     },
     cover: {
         height: Dimensions.get("window").width / 2,

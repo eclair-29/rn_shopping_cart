@@ -1,46 +1,51 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loadProducts, getNextPage } from "../redux/slices/products";
+import { loadProducts, loadMoreProducts } from "../redux/slices/products";
+import {
+    getLoadingState,
+    getProductsState,
+    getPageState,
+    getIsEndPageState,
+    getValidationState,
+} from "../redux/selectors/products";
 import CartFab from "../components/CartFab";
 import ProductGridList from "../components/ProductGridList";
-import SkeletonGridList from "../components/SkeletonGridList";
 import SearchField from "../components/SearchField";
+import { loadAddToCart } from "../redux/slices/cart";
 
 const Result = ({ navigation }) => {
-    const products = useSelector((state) => state.products.list);
-    const loading = useSelector((state) => state.products.loading);
-    const page = useSelector((state) => state.products.page);
-    const endPage = useSelector((state) => state.products.endPage);
+    const products = useSelector(getProductsState);
+    const loading = useSelector(getLoadingState);
+    const page = useSelector(getPageState);
+    const isEndPage = useSelector(getIsEndPageState);
+    const validation = useSelector(getValidationState);
 
     const dispatch = useDispatch();
 
-    const skeletonListPlaceholder = new Array(8);
-
     useEffect(() => {
         dispatch(loadProducts());
-    }, [/* dispatch */ page]);
+    }, [dispatch]);
 
     const _handleLoadMore = () => {
-        !endPage && dispatch(getNextPage());
-        console.log("page: ", page);
+        !isEndPage && dispatch(loadMoreProducts());
+    };
+
+    const _handleAddToCart = (productId) => {
+        dispatch(loadAddToCart(productId));
     };
 
     return (
         <>
             <SearchField navigation={navigation} />
-            {loading && (
-                <SkeletonGridList
-                    skeletonPlaceholders={[...skeletonListPlaceholder.keys()]}
-                    col={2}
-                />
-            )}
-            {products && (
-                <ProductGridList
-                    products={products}
-                    col={2}
-                    _handleLoadMore={_handleLoadMore}
-                />
-            )}
+            <ProductGridList
+                products={products}
+                col={2}
+                _handleLoadMore={_handleLoadMore}
+                loading={loading}
+                validation={validation}
+                page={page}
+                _handleAddToCart={_handleAddToCart}
+            />
             <CartFab navigation={navigation} />
         </>
     );

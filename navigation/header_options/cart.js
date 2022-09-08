@@ -1,4 +1,7 @@
 import { Colors, IconButton } from "react-native-paper";
+import ScanIcon from "../../assets/scan.svg";
+
+const scanIcon = () => <ScanIcon width={30} height={30} fill="#fff" />;
 
 const CartHeaderRight = ({ navigation }) => {
     const _handleSearchNavigation = () => {
@@ -12,7 +15,7 @@ const CartHeaderRight = ({ navigation }) => {
                 onPress={_handleSearchNavigation}
                 color={Colors.white}
             />
-            <IconButton icon="message-circle" disabled />
+            <IconButton color={Colors.white} icon={scanIcon} />
         </>
     );
 };
