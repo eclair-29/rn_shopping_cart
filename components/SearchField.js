@@ -8,7 +8,7 @@ import { getQueryState } from "../redux/selectors/search";
 
 const textInputLeftNode = <TextInput.Icon icon="search" size={20} />;
 
-const textInputRightNode = <TextInput.Icon disabled icon="mic" size={20} />;
+const textInputRightNode = <TextInput.Icon disabled icon="filter" size={20} />;
 
 const SearchField = ({ navigation }) => {
     const query = useSelector(getQueryState);

@@ -15,7 +15,7 @@ const CartHeaderRight = ({ navigation }) => {
                 onPress={_handleSearchNavigation}
                 color={Colors.white}
             />
-            <IconButton color={Colors.white} icon={scanIcon} />
+            <IconButton disabled color={Colors.white} icon={scanIcon} />
         </>
     );
 };

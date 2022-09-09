@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, View } from "react-native";
-import { ActivityIndicator, Colors, Headline } from "react-native-paper";
+import { ActivityIndicator, Colors, Text } from "react-native-paper";
 import globalStyles from "../globals/styles";
 import ProductCard from "./ProductCard";
 
@@ -17,7 +17,7 @@ const GridListFooter = ({ loading, page }) =>
 const GridListEmpty = ({ validation }) =>
     validation && (
         <View style={gridListStyles.empty}>
-            <Headline style={gridListStyles.headline}>{validation}</Headline>
+            <Text style={globalStyles.text}>{validation}</Text>
         </View>
     );
 
@@ -28,6 +28,7 @@ const ProductGridList = ({
     loading,
     validation,
     _handleAddToCart,
+    cartLoading,
 }) => {
     return (
         <FlatList
@@ -38,6 +39,7 @@ const ProductGridList = ({
                     titleFontSize={12}
                     priceFontSize={14}
                     _handleAddToCart={_handleAddToCart}
+                    cartLoading={cartLoading}
                 />
             )}
             keyExtractor={(product, index) => index.toString()}

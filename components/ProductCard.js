@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import { StyleSheet, Dimensions, View } from "react-native";
 import { Card, Colors, Button, Text, Title } from "react-native-paper";
+import ValidationBar from "./ValidationBar";
 
 class ProductCard extends PureComponent {
     constructor(props) {
