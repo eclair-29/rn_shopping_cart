@@ -15,6 +15,7 @@ export const cartSlice = createSlice({
         loadAddToCart: (state, action) => {
             state.loading = true;
             state.scannedId = action.payload;
+            state.validation = "adding product to cart...";
         },
         addToCartSuccess: (state, action) => {
             state.list = action.payload;

@@ -23,7 +23,7 @@ import {
     changeCartProductQty,
 } from "../slices/cart";
 
-const api = "http://192.168.1.7:3001/products";
+const api = "https://rn-shopping-cart-server.herokuapp.com/products";
 
 function* addToCartSaga() {
     const scannedId = yield select(getScannedIdState);
