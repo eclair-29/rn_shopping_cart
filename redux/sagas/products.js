@@ -16,7 +16,7 @@ import {
 import { getPageState, getProductsState } from "../selectors/products";
 import { getQueryState } from "../selectors/search";
 
-const api = "http://192.168.1.7:3001/search";
+const api = "https://rn-shopping-cart-server.herokuapp.com/search";
 const cap = 10;
 
 function* cleanUpOldResultSaga() {

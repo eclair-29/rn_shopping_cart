@@ -1,9 +1,15 @@
 import { IconButton, Colors } from "react-native-paper";
 
 const ResultHeaderRight = ({ navigation }) => {
+    const _handleCartNavigation = () => navigation.navigate("Cart");
     return (
         <>
-            <IconButton icon="filter" color={Colors.white} />
+            <IconButton
+                onPress={_handleCartNavigation}
+                icon="shopping-cart"
+                on
+                color={Colors.white}
+            />
         </>
     );
 };

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "react-native-paper";
 
 const globalStyles = StyleSheet.create({
     container: {
@@ -15,7 +16,6 @@ const globalStyles = StyleSheet.create({
     header: {
         fontSize: 16,
         fontFamily: "poppins_500",
-        textTransform: "uppercase",
     },
     fab: {
         position: "absolute",
@@ -26,6 +26,9 @@ const globalStyles = StyleSheet.create({
     gridContainer: {
         flex: 1,
         padding: 10,
+    },
+    snackbar: {
+        backgroundColor: Colors.teal500,
     },
 });
 

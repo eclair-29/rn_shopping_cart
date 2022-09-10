@@ -9,11 +9,13 @@ export const cartSlice = createSlice({
         loading: false,
         scannedId: "",
         validation: "",
+        qtyInput: 0,
     },
     reducers: {
         loadAddToCart: (state, action) => {
             state.loading = true;
             state.scannedId = action.payload;
+            state.validation = "adding product to cart...";
         },
         addToCartSuccess: (state, action) => {
             state.list = action.payload;
@@ -26,12 +28,32 @@ export const cartSlice = createSlice({
         addToCartFailure: (state) => {
             state.loading = false;
         },
-        loadTakeOutProductOnCart: (state, action) => {
+        loadDeleteProductOnCart: (state, action) => {
             state.loading = true;
             state.scannedId = action.payload;
         },
-        takeOutProductOnCartSuccess: (state, action) => {
-            (state.list = action.payload), (state.loading = false);
+        deleteProductOnCart: (state, action) => {
+            state.list = action.payload;
+            state.loading = false;
+        },
+        sendSuccessfulFeedBack: (state, action) => {
+            state.validation = action.payload;
+        },
+        resetValidationFeedBack: (state) => {
+            state.validation = "";
+        },
+        loadCartProductQtyIncrease: (state, action) => {
+            state.loading = true;
+            state.scannedId = action.payload;
+        },
+        loadCartProductQtyChange: (state, action) => {
+            state.loading = true;
+            state.qtyInput = action.payload.qtyInput;
+            state.scannedId = action.payload.scannedId;
+        },
+        changeCartProductQty: (state, action) => {
+            state.loading = false;
+            state.list = action.payload;
         },
     },
 });
@@ -39,7 +61,7 @@ export const cartSlice = createSlice({
 const persistConfig = {
     key: "root",
     storage: AsyncStorage,
-    whitelist: [],
+    whitelist: ["list"],
 };
 
 export const {
@@ -47,8 +69,12 @@ export const {
     addToCartSuccess,
     addToCartFailure,
     updateProductQtyOnCart,
-    loadTakeOutProductOnCart,
-    takeOutProductOnCartSuccess,
+    loadDeleteProductOnCart,
+    deleteProductOnCart,
+    sendSuccessfulFeedBack,
+    resetValidationFeedBack,
+    loadCartProductQtyChange,
+    changeCartProductQty,
 } = cartSlice.actions;
 
 export default persistReducer(persistConfig, cartSlice.reducer);
