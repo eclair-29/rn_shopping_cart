@@ -18,15 +18,15 @@
 -   [x] create search field UI
 -   [x] create search state and reducer
 -   [x] handle server search request
--   [ ] handle request-on-scroll feature - based on page state
--   [ ] add pull to reload list feature - optional
+-   [x] handle request-on-scroll feature - based on page state
+-   [x] add pull to reload list feature - optional
 
 ### Sep 6'22
 
 -   [x] setup redux persist
--   [ ] create cart states and reducer
--   [ ] create cart ui flatlist
--   [ ] create cart card skeleton ui
+-   [x] create cart states and reducer
+-   [x] create cart ui flatlist
+-   [x] create cart card skeleton ui
 -   [x] handle search if current screen is "Result"
 -   [x] find package for product photo placeholders
 -   [ ] enable searchbar onfocus whenever we visit "Search" screen
