@@ -42,10 +42,6 @@ export const cartSlice = createSlice({
         resetValidationFeedBack: (state) => {
             state.validation = "";
         },
-        loadCartProductQtyIncrease: (state, action) => {
-            state.loading = true;
-            state.scannedId = action.payload;
-        },
         loadCartProductQtyChange: (state, action) => {
             state.loading = true;
             state.qtyInput = action.payload.qtyInput;

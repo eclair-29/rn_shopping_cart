@@ -7,7 +7,6 @@ const ResultHeaderRight = ({ navigation }) => {
             <IconButton
                 onPress={_handleCartNavigation}
                 icon="shopping-cart"
-                on
                 color={Colors.white}
             />
         </>

@@ -9,7 +9,7 @@ import {
     loadDeleteProductOnCart,
 } from "../redux/slices/cart";
 
-const Cart = ({ navigation }) => {
+const Cart = () => {
     const cartList = useSelector(getCartListState);
     const totalPrice = useSelector(getTotalPriceOnCart);
     const totalCartProducts = cartList.length;
