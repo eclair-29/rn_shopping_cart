@@ -31,4 +31,9 @@
 -   [x] find package for product photo placeholders
 -   [ ] enable searchbar onfocus whenever we visit "Search" screen
 
-### Must Have features
+### Must Have features but not included on initial release
+
+1. add to cart product using scanner
+2. filter products by brand or category
+3. add payment gateway for withdrawing/checking out products
+4. add product info screen
